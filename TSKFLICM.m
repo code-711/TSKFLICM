@@ -11,7 +11,7 @@ G=zeros(m,n,c);
  p=zeros(m,n,c);
 
 
-%算data均值
+
  
     for i=2:m-1
         for j=2:n-1
@@ -27,7 +27,7 @@ G=zeros(m,n,c);
     end
 
 
-%计算A
+
    for i=1:m
         for j=1:n
             A(i,j)=sqrt(1+4*(a*ave(i,j)*ave(i,j)+b)^dd);
@@ -35,7 +35,7 @@ G=zeros(m,n,c);
    end
 
 
-  %计算gamma(k)
+ 
 for k=1:c
     tp1=0.0;
     tp2=0.0;
@@ -49,9 +49,9 @@ for k=1:c
 end
   
  
-  while et>0.0001 && t<1000 %循环条件
+  while et>0.0001 && t<1000 
     v=v1;
-%计算pai
+
 for k=1:c
     for i=2:m-1
         for j=2:n-1
@@ -80,7 +80,7 @@ for k=1:c
  end
 
 
- % 算G、
+
 
  for k=1:c
     for i=2:m-1
@@ -98,7 +98,7 @@ for k=1:c
     end
  end
  
- %算距离
+
  for k=1:c
         for  i=1:m
             for j=1:n
@@ -107,7 +107,7 @@ for k=1:c
         end
  end
 
- % 算隶属度
+
     for i=1:m
         for j=1:n
             tp1=0.0;
@@ -120,7 +120,7 @@ for k=1:c
         end
     end
     
-    %算t
+  
     for k=1:c
         for i=1:m
             for j=1:n
@@ -129,7 +129,6 @@ for k=1:c
         end
     end
     
- % 更新聚类中心
     for k=1:c
         tp1=0.0;
         tp2=0.0;
@@ -139,10 +138,10 @@ for k=1:c
                 tp2=tp2+((1-pai(i,j,k))*u(i,j,k)^mc*t1(i,j,k)^nc*(a*v1(k)*v1(k)+b)^(dd-1))/A(i,j);
             end
         end
-        v1(k)=tp1/tp2;            %聚类中心
+        v1(k)=tp1/tp2;            
     end
 
-% 终止条件
+
    temp=0.0;
    for k=1:c
          temp=temp+(v(k)-v1(k))^2;
@@ -155,7 +154,7 @@ t=t+1;
 
 
 
-% 聚类
+
 I_TSKFLICM=zeros(m,n);
 if c==2
     for i=1:m
