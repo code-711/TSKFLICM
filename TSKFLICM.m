@@ -1,12 +1,6 @@
 function [I_TSKFLICM,TSKFLICM_Vpe,TSKFLICM_SA,TSKFLICM_psnr]=TSKFLICM(data,v1,m,n,c,mc,e,ct)
 
-et=0.01;
-t=0;
-nc=2;
-a=1;
-b=100000;
-f=1.8;
-dd=2;
+
 
 
 [u,v1,Wij]=KWFLICM(data,v1,m,n,c,mc,e,ct);
@@ -17,7 +11,7 @@ G=zeros(m,n,c);
  p=zeros(m,n,c);
 
 
-%Ëãdata¾ùÖµ
+%ç®—dataå‡å€¼
  
     for i=2:m-1
         for j=2:n-1
@@ -33,7 +27,7 @@ G=zeros(m,n,c);
     end
 
 
-%¼ÆËãA
+%è®¡ç®—A
    for i=1:m
         for j=1:n
             A(i,j)=sqrt(1+4*(a*ave(i,j)*ave(i,j)+b)^dd);
@@ -41,7 +35,7 @@ G=zeros(m,n,c);
    end
 
 
-  %¼ÆËãgamma(k)
+  %è®¡ç®—gamma(k)
 for k=1:c
     tp1=0.0;
     tp2=0.0;
@@ -55,9 +49,9 @@ for k=1:c
 end
   
  
-  while et>0.0001 && t<1000 %Ñ­»·Ìõ¼þ
+  while et>0.0001 && t<1000 %å¾ªçŽ¯æ¡ä»¶
     v=v1;
-%¼ÆËãpai
+%è®¡ç®—pai
 for k=1:c
     for i=2:m-1
         for j=2:n-1
@@ -86,7 +80,7 @@ for k=1:c
  end
 
 
- % ËãG¡¢
+ % ç®—Gã€
 
  for k=1:c
     for i=2:m-1
@@ -104,7 +98,7 @@ for k=1:c
     end
  end
  
- %Ëã¾àÀë
+ %ç®—è·ç¦»
  for k=1:c
         for  i=1:m
             for j=1:n
@@ -113,7 +107,7 @@ for k=1:c
         end
  end
 
- % ËãÁ¥Êô¶È
+ % ç®—éš¶å±žåº¦
     for i=1:m
         for j=1:n
             tp1=0.0;
@@ -126,7 +120,7 @@ for k=1:c
         end
     end
     
-    %Ëãt
+    %ç®—t
     for k=1:c
         for i=1:m
             for j=1:n
@@ -135,7 +129,7 @@ for k=1:c
         end
     end
     
- % ¸üÐÂ¾ÛÀàÖÐÐÄ
+ % æ›´æ–°èšç±»ä¸­å¿ƒ
     for k=1:c
         tp1=0.0;
         tp2=0.0;
@@ -145,10 +139,10 @@ for k=1:c
                 tp2=tp2+((1-pai(i,j,k))*u(i,j,k)^mc*t1(i,j,k)^nc*(a*v1(k)*v1(k)+b)^(dd-1))/A(i,j);
             end
         end
-        v1(k)=tp1/tp2;            %¾ÛÀàÖÐÐÄ
+        v1(k)=tp1/tp2;            %èšç±»ä¸­å¿ƒ
     end
 
-% ÖÕÖ¹Ìõ¼þ
+% ç»ˆæ­¢æ¡ä»¶
    temp=0.0;
    for k=1:c
          temp=temp+(v(k)-v1(k))^2;
@@ -161,7 +155,7 @@ t=t+1;
 
 
 
-% ¾ÛÀà
+% èšç±»
 I_TSKFLICM=zeros(m,n);
 if c==2
     for i=1:m
