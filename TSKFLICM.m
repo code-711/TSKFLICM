@@ -1,8 +1,6 @@
 function [I_TSKFLICM,TSKFLICM_Vpe,TSKFLICM_SA,TSKFLICM_psnr]=TSKFLICM(data,v1,m,n,c,mc,e,ct)
 
 
-
-
 [u,v1,Wij]=KWFLICM(data,v1,m,n,c,mc,e,ct);
 
 ave=data;
